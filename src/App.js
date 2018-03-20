@@ -8,7 +8,7 @@ import Todos from './Components/Todos';
 
 export default class App extends Component {
 	constructor(){
-		super();
+		super(); 
 		this.state = {
 			projects: [],
 			todos:[]
