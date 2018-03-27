@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import Projects from './Components/Projects';
-import AddProject from './Components/AddProject';
-import $ from 'jquery';
-import uuid from 'uuid';
-import './App.css';
-import Todos from './Components/Todos';
+import React, { Component } from "react";
+import Projects from "./Components/Projects";
+import AddProject from "./Components/AddProject";
+import $ from "jquery";
+import uuid from "uuid";
+import "./App.css";
+import Todos from "./Components/Todos";
 
 export default class App extends Component {
 	constructor(){
@@ -12,12 +12,12 @@ export default class App extends Component {
 		this.state = {
 			projects: [],
 			todos:[]
-		}
+		};
 	}
 	getTodos(){
 		$.ajax({
-			url:'http://jsonplaceholder.typicode.com/todos',
-			dataType: 'json',
+			url:"http://jsonplaceholder.typicode.com/todos",
+			dataType: "json",
 			cache: false,
 			success: function(data){
 				this.setState({todos: data}, function(){
@@ -27,32 +27,32 @@ export default class App extends Component {
 			error: function(xhr, status, err){
 				console.log(err);
 			}
-		})
+		});
 	}
 
 	getProjects(){
 		this.setState({projects: [
 			{
 				id:uuid.v4(),
-				title:'A',
-				category:'1'
+				title:"A",
+				category:"1"
 			},
 			{
 				id:uuid.v4(),
-				title:'B',
-				category:'2'
+				title:"B",
+				category:"2"
 			},
 			{
 				id:uuid.v4(),
-				title:'C',
-				category:'3'
+				title:"C",
+				category:"3"
 			},
 		]});
 	}
 
 	componentWillMount(){
-			this.getProjects();
-			this.getTodos();
+		this.getProjects();
+		this.getTodos();
 	}
 
 	componentDidMount(){
@@ -73,10 +73,10 @@ export default class App extends Component {
 	render() {
 		return (
 			<div className="App">
-			<AddProject addProject={this.handleAddProject.bind(this)}/>
-			<Projects projects={this.state.projects} onDelete={this.handleDeleteProject.bind(this)}/>
-			<hr/>
-			<Todos todos={this.state.todos}/>
+				<AddProject addProject={this.handleAddProject.bind(this)}/>
+				<Projects projects={this.state.projects} onDelete={this.handleDeleteProject.bind(this)}/>
+				<hr/>
+				<Todos todos={this.state.todos}/>
 			</div>
 		);
 	}
